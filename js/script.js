@@ -75,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
             modal.style.display = 'none';
         }
     }
-
     // Email form handling
     const form = document.getElementById('emailForm');
     const emailInput = document.getElementById('email');
@@ -88,14 +87,27 @@ document.addEventListener('DOMContentLoaded', function() {
             showStatus('Please enter a valid email address', 'error');
             return;
         }
+
+        // Store email before clearing
+        const submittedEmail = emailInput.value;
         
         // Show success message
         showStatus('Thank you! We\'ll notify you when we launch.', 'success');
         
-        // Clear the email input immediately
+        // Log the email to Google Forms
+        const formData = new FormData();
+        formData.append('entry.925780745', submittedEmail); // Using the correct field name
+        
+        fetch('https://docs.google.com/forms/d/e/1FAIpQLSe0Bgq5X--E2iqvpEYywhiqIhltuDdNjKrPFjMF05zvpT6QzA/formResponse', {
+            method: 'POST',
+            mode: 'no-cors',
+            body: formData
+        });
+
+        // Clear the email input
         emailInput.value = '';
         
-        // Clear the success message after 6 seconds (increased from 3)
+        // Clear the success message after 6 seconds
         setTimeout(() => {
             statusMessage.textContent = '';
             statusMessage.className = 'status-message';
