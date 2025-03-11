@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
         'images/food4.jpeg',
         'images/food5.jpeg',
         'images/food6.jpeg',
+    ];
+    const imagePaths2 = [
         'images/food7.jpeg',
         'images/food8.jpeg',
         'images/food9.jpeg',
@@ -24,6 +26,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const screenWidth = window.innerWidth;
     const numColumns = Math.floor((screenWidth * 0.9) / columnWidth);
 
+    // Check if screen width has changed
+    let newNumColumns;
+    let prevScreenWidth = screenWidth;
+    window.addEventListener('resize', () => {
+        const currentScreenWidth = window.innerWidth;
+        if (currentScreenWidth !== prevScreenWidth) {
+            prevScreenWidth = currentScreenWidth;
+            
+            if (currentScreenWidth < 900) {
+                newNumColumns = 2;
+            } else if (currentScreenWidth < 1500) {
+                newNumColumns = 4; 
+            } else {
+                newNumColumns = 6;
+            }
+            if (newNumColumns !== numColumns) {
+                location.reload(); // Refresh page to recalculate columns
+            }
+        }
+    });
     // Create alternating columns
     for (let i = 0; i < numColumns; i++) {
         const scrollContainer = document.createElement('div');
@@ -32,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Rotate the array by i positions for each column
         const rotatedPaths = [
             ...imagePaths.slice(i % imagePaths.length),
-            ...imagePaths.slice(0, i % imagePaths.length)
+            ...imagePaths2.slice(0, i % imagePaths2.length)
         ];
         
         // Add images to the container with rotated starting point
@@ -53,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         backgroundContainer.appendChild(scrollContainer);
     }
+
     
     // Modal functionality
     const modal = document.getElementById('contactModal');
@@ -81,6 +104,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const statusMessage = document.getElementById('emailStatus');
     
     form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Always prevent default form submission
+        
         // Validate email
         if (!isValidEmail(emailInput.value)) {
             e.preventDefault();
@@ -95,16 +120,29 @@ document.addEventListener('DOMContentLoaded', function() {
         showStatus('Thank you! We\'ll notify you when we launch.', 'success');
         
         // Log the email to Google Forms
-        const formData = new FormData();
-        formData.append('entry.925780745', submittedEmail); // Using the correct field name
-        
-        fetch('https://docs.google.com/forms/d/e/1FAIpQLSe0Bgq5X--E2iqvpEYywhiqIhltuDdNjKrPFjMF05zvpT6QzA/formResponse', {
-            method: 'POST',
-            mode: 'no-cors',
-            body: formData
-        });
+        let formData = new FormData(this);
+        var keyValuePairs = [];
+        keyValuePairs.push("Date=" + new Date().toLocaleString());
+        for (var pair of formData.entries()) {
+          keyValuePairs.push(pair[0] + "=" + pair[1]);
+        }
 
-        // Clear the email input
+        var formDataString = keyValuePairs.join("&");
+        console.log(formDataString)
+        fetch(
+            'https://script.google.com/macros/s/AKfycbzDiUfS0pnMpnYfDJNzYdCnvVZlaqgyVmp5aIX1Tru5UtT2oDsi8adea1dMBHv1aBmv/exec',
+            {
+                mode: 'no-cors',
+                redirect: "follow",
+                method: "POST",
+                body: formDataString,
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8",
+                },
+            }
+          )
+
+        // // Clear the email input
         emailInput.value = '';
         
         // Clear the success message after 6 seconds
