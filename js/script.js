@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var formDataString = keyValuePairs.join("&");
         console.log(formDataString)
         fetch(
-            'https://script.google.com/macros/s/AKfycbzDiUfS0pnMpnYfDJNzYdCnvVZlaqgyVmp5aIX1Tru5UtT2oDsi8adea1dMBHv1aBmv/exec',
+            '//script.google.com/macros/s/AKfycbzf8ILM-lprIATF7NjeaxgoMlP-1AjBhNxtuuS9aOsDiOEoO0wcgy8GN849VCZUybWx/exec',
             {
                 mode: 'no-cors',
                 redirect: "follow",
