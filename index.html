@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simmer - Coming Soon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Simmer Logo">
+        </div>
+        <div class="contact-button">
+            <button id="contactBtn">Contact Us</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="coming-soon-text">
+            <h1><span class="simmer-text">Simmer</span> Coming Soon</h1>
+            <p class="tagline">Learn from the chefs you love</p>
+            
+            <!-- Add email form -->
+            <div class="email-signup">
+                <form id="emailForm" action="https://docs.google.com/forms/d/e/1FAIpQLSe0Bgq5X--E2iqvpEYywhiqIhltuDdNjKrPFjMF05zvpT6QzA/formResponse" target="hidden_iframe" method="post">
+                    <div class="form-group">
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="entry.925780745"
+                            placeholder="Email address" 
+                            required 
+                        >
+                        <button type="submit" id="submitBtn">Notify Me</button>
+                    </div>
+                    <p id="emailStatus" class="status-message"></p>
+                </form>
+                <iframe name="hidden_iframe" style="display:none;"></iframe>
+            </div>
+        </div>
+    </main>
+
+    <div class="background-container">
+        <!-- Image columns will be added via JavaScript -->
+    </div>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Contact Us</h2>
+            <p>Email: <a href="mailto:marco.nino@yale.edu">marco.nino@yale.edu</a></p>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html> 

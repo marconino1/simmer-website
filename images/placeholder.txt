@@ -1,0 +1,11 @@
+Please save the following images to this directory:
+
+1. logo.png - The Simmer logo (red circular logo with white 'S' shape)
+2. food1.jpg - The first food image (pasta with chicken)
+3. food2.jpg - The second food image (thanksgiving dinner spread)
+4. food3.jpg - The third food image (broccoli in cream sauce)
+5. food4.jpg - The fourth food image (mac and cheese)
+6. food5.jpg - The fifth food image (person making a salad)
+7. food6.jpg - The sixth food image (chicken in cream sauce)
+
+These images will be used for the Simmer coming soon landing page. 
